@@ -64,8 +64,6 @@ function findAdjacents(currentPosition, usedPositions) {
             return (rowPosition + position) > boardSize || (colPosition + position) > boardSize;
         });
 
-        console.log(direction, invalid);
-
         if (!invalid) {
             acc.push(direction);
         }

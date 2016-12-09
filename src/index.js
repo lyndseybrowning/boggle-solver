@@ -51,14 +51,10 @@ function solve(currentWord, currentPosition, usedPositions = []) {
 // e.g. [0,0] returns [ [0,1], [1,0], [1,1] ]
 // filter out usedPositions
 function findAdjacents(currentPosition, usedPositions) {
-    const rowPosition = currentPosition[0];
-    const colPosition = currentPosition[1];
+    const[rowPosition, colPosition] = currentPosition;
 
     return directions.reduce((acc, direction) => {
-        const row = direction[0];
-        const col = direction[1];
-
-
+        const [row,col] = direction;      
 
         // if the calculated direction is in usedPositions, ignore
 

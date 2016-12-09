@@ -37,6 +37,8 @@ function solve(currentWord, currentPosition, usedPositions = []) {
         [0, 1]
     ]);
 
+    console.log(adjacents);
+
     // check if there are any valid positions to go to that haven't been used
     // if there aren't we return early
 
@@ -51,27 +53,18 @@ function solve(currentWord, currentPosition, usedPositions = []) {
 // e.g. [0,0] returns [ [0,1], [1,0], [1,1] ]
 // filter out usedPositions
 function findAdjacents(currentPosition, usedPositions) {
-    const rowPosition = currentPosition[0];
-    const colPosition = currentPosition[1];
+    const [rowPosition, colPosition] = currentPosition;
 
     return directions.reduce((acc, direction) => {
-        const row = direction[0];
-        const col = direction[1];
-
-
-
-        // if the calculated direction is in usedPositions, ignore
-
-
-
-
         const invalid = direction.some((position) => {
             if (position < 0) {
                 let pos = Math.abs(position);
-                return (row - pos) < 0 || (col - pos) < 0;
+                return (rowPosition - pos) < 0 || (colPosition - pos) < 0;
             }
-            return (row + position) > boardSize || (col + position) > boardSize;
+            return (rowPosition + position) > boardSize || (colPosition + position) > boardSize;
         });
+
+        console.log(direction, invalid);
 
         if (!invalid) {
             acc.push(direction);

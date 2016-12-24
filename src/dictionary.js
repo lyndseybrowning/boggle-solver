@@ -1,6 +1,6 @@
-const Dictionary = () => {
-  const trie={b:{a:{d:{$:1}},e:{a:{d:{$:1}},g:{$:1}}},f:{e:{d:{$:1},h:{$:1}}},h:{i:{e:{$:1,d:{$:1}}}}};
+const trie = require('./csw.json');
 
+const Dictionary = () => {
   return {
   	containsWord(word) {
     	if(typeof word !== 'string') {
@@ -11,12 +11,16 @@ const Dictionary = () => {
         return false;
       }
 
- 			let currentNode = trie;
-      return word.split('').every(letter => {
+ 		 	let currentNode = trie;
+      return word.split('').every((letter, index) => {
         if(!currentNode[letter]) {
         	return false;
         }
         currentNode = currentNode[letter];
+
+        if(index === word.length - 1) {
+          return currentNode.$ === 1;
+        }
       	return letter;
       });
     }

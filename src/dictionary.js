@@ -1,5 +1,5 @@
-const Dictionary = (() => {
-  const trie = {b:{a:{d:{$:1}},e:{a:{d:{$:1}}},g:{$:1}},f:{e:{d:{$:1},h:{$:1}}},h:{i:{e:{$:1,d:{$:1}}}}};
+const Dictionary = () => {
+  const trie={b:{a:{d:{$:1}},e:{a:{d:{$:1}},g:{$:1}}},f:{e:{d:{$:1},h:{$:1}}},h:{i:{e:{$:1,d:{$:1}}}}};
 
   return {
   	containsWord(word) {
@@ -21,4 +21,6 @@ const Dictionary = (() => {
       });
     }
   }
-}());
+};
+
+module.exports = Dictionary();

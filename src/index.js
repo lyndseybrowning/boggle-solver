@@ -1,74 +1,76 @@
-const minWordLength = 3;
-const boardSize = 3;
-const wordList = [];
-const directions = [
-    [-1, -1],
-    [-1, 0],
-    [-1, 1],
-    [0, -1],
-    [0, 1],
-    [1, -1],
-    [1, 0],
-    [1, 1]
-];
-const tiles = [
+const Dictionary = require('./dictionary');
+
+const validWords = [];
+const directions = [ [-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1] ];
+const grid = [
     ['a', 'b', 'c'],
     ['d', 'e', 'f'],
     ['g', 'h', 'i']
 ];
+const size = grid.length;
+const minLength = 3;
 
-//tiles.forEach((row, x) => {
-//	row.forEach((letter, y) => solve(letter, [x,y]));
-//});
-
-solve('a', [0, 0]);
+grid.forEach((row, rowIndex) => {
+ row.forEach((col, colIndex) => {
+    solve(grid[rowIndex][colIndex], [rowIndex, colIndex]);
+  });
+});
+console.log(validWords);
 
 function solve(currentWord, currentPosition, usedPositions = []) {
+  const [row, col] = currentPosition;
+    const positionsCopy = usedPositions.slice();
 
-    if (currentWord.length >= minWordLength && Dictionary.containsWord(currentWord) && !wordList.contains(currentWord)) {
-        wordList.push(currentWord);
+    if(currentWord.length >= minLength && Dictionary.containsWord(currentWord) && !inArray(validWords, currentWord)) {
+    	validWords.push(currentWord);
     }
+    const adjacents = findAdjacents(currentPosition, usedPositions);
 
-    if (usedPositions.length === (boardSize * 2) - 1) {
-        return wordList;
-    }
+    adjacents.forEach(adjacent => {
+    	positionsCopy.push(currentPosition);
+      const [x,y] = adjacent;
+      const letter = grid[x][y];
+      const word = currentWord + letter;
 
-    const adjacents = findAdjacents(currentPosition, [
-        [0, 1]
-    ]);
+      solve(word, adjacent, positionsCopy);
+    });
 
-    console.log(adjacents);
+    return;
+}
 
-    // check if there are any valid positions to go to that haven't been used
-    // if there aren't we return early
+function inArray(arr, word) {
+	return (arr.indexOf(word) !== -1);
+}
 
-    // check if the length of the word exceeds minWordLength
-    // otherwise move to next position
-
-    // check if the current word exists in the dictionary
-    // if it does, add it to the word list
+/// checks if two arrays are exactly the same
+// e.g. [1,1] === [1,1], [1,0] !== [1,1]
+function arrayMatch(first, second) {
+	return first.some((item) => {
+ 		return item.every((x, index) => {
+    	return x === second[index];
+    });
+  });
 }
 
 // find a list of positions adjacent to the position passed in
 // e.g. [0,0] returns [ [0,1], [1,0], [1,1] ]
 // filter out usedPositions
-function findAdjacents(currentPosition, usedPositions) {
-    const [rowPosition, colPosition] = currentPosition;
+function findAdjacents(position, usedPositions) {
+	const allDirections = directions.slice(0);
+	const [row,col] = position;
 
-    return directions.reduce((acc, direction) => {
-        const invalid = direction.some((position) => {
-            if (position < 0) {
-                let pos = Math.abs(position);
-                return (rowPosition - pos) < 0 || (colPosition - pos) < 0;
-            }
-            return (rowPosition + position) > boardSize || (colPosition + position) > boardSize;
-        });
+	return allDirections.reduce((acc, direction) => {
+  	const [x, y] = direction;
+    const rowSum = (x < 0) ? row - Math.abs(x) : row + x;
+    const colSum = (y < 0) ? col - Math.abs(y) : col + y;
 
-        if (!invalid) {
-            acc.push(direction);
-        }
+    if((rowSum >= 0 && colSum >= 0) && (rowSum < size && colSum < size)) {
+    	let result = [rowSum, colSum];
 
-        return acc;
-
-    }, []);
+      if(!arrayMatch(usedPositions, result)) {
+   			acc.push(result);
+      }
+    }
+    return acc;
+  }, []);
 }

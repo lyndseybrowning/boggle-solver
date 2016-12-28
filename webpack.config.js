@@ -6,7 +6,7 @@ var WebpackNotifierPlugin = require('webpack-notifier');
  */
 var config = {
   devtool: 'eval-source-map',
-  entry:  __dirname + "/src/index.js",
+  entry:  __dirname + "/src/js/index.js",
   output: {
     path: __dirname + "/build",
     filename: "bundle.js"

@@ -1,0 +1,11 @@
+.c-boggle {
+  background-color: #fff;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.c-boggle__tile > input {
+  margin: $spacing-unit;
+}

@@ -1,1 +1,1 @@
-JavaScript implementation of Boggle Solver.
+Boggle Solver written in JavaScript.

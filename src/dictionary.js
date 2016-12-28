@@ -1,6 +1,5 @@
-const trie = require('./csw.json');
-
 const Dictionary = () => {
+
   return {
   	containsWord(word) {
     	if(typeof word !== 'string') {
@@ -11,7 +10,7 @@ const Dictionary = () => {
         return false;
       }
 
- 		 	let currentNode = trie;
+      let currentNode = trie;
       return word.split('').every((letter, index) => {
         if(!currentNode[letter]) {
         	return false;

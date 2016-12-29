@@ -7,20 +7,20 @@ export default (() => {
     },
 
     add(word) {
-      if(word == null || word === '')
+      if(word == null || word === '') {
         return;
       }
 
       let currentNode = trie;
-      word.toLowerCase().split('').forEach(letter, index) {
+      word.toLowerCase().split('').forEach((letter, index) => {
         if(!currentNode[letter]) {
           currentNode[letter] = {};
         }
-        currentNode = currentNode[letter];
-
-        // reached the end of the word
-        if(index === line.length - 1) {
+        // reached the end of the word?
+        if(index === word.length - 1) {
           currentNode.$ = 1;
+        } else {
+          currentNode = currentNode[letter];
         }
       });
     },
@@ -47,7 +47,7 @@ export default (() => {
       	return letter;
       });
     },
-    
+
     isValidPrefix(prefix) {
       let currentNode = trie;
 

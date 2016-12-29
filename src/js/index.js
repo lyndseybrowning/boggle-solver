@@ -1,19 +1,17 @@
-import css from '../css/main.scss';
-import solve from './solver';
-import grid from './grid';
 import 'whatwg-fetch';
 import './analytics';
+import css from '../css/main.scss';
+import trie from './trie';
+import board from './board';
+import solver from './solver';
 
-const env = process.env.NODE_ENV || 'development';
-let path = '/dictionary';
-if(env === 'production') {
-  path = '/boggle-solver-js/dictionary';
-}
+board.init();
 
-let updateSize = document.getElementById('update-grid-size');
-grid.init({ onLoad: true });
-updateSize.addEventListener('click', () => { grid.init({ onLoad: true }) });
-
-fetch(`${path}/sowpods.json`)
-.then(response => { return response.json() })
-.then(body => { solve(body) });
+fetch(`dictionary/sowpods.txt`)
+.then(response => { return response.text() })
+.then(response => {
+  response.split('\n').forEach((word) => {
+    trie.add(word);
+  });
+  solver.init();
+});

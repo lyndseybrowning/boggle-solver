@@ -8,6 +8,10 @@ const err = document.getElementById('err');
 const minLength = settings.minWordLength;
 const numWords = document.getElementById('num-words');
 const wordList = document.getElementById('word-list');
+const execution = document.getElementById('execution');
+const executionTime = document.getElementById('execution-time');
+
+execution.style.visibility = 'hidden';
 
 let board = [];
 let validWords = [];
@@ -25,9 +29,11 @@ function handleReset() {
 }
 
 function handleSolve() {
+  let start = new Date().getTime();
   let counter = 0;
   tiles = document.querySelectorAll('[data-letter]');
   size = grid.size;
+
 
   if(!allTilesEntered()) {
     err.innerText = (`Enter a letter in all fields`);
@@ -54,6 +60,10 @@ function handleSolve() {
      solve(board[rowIndex][colIndex], [rowIndex, colIndex]);
     });
   });
+  let end = new Date().getTime();
+
+  execution.style.visibility = 'visible';
+  executionTime.innerText = `${end-start}ms`;
 
   if(validWords.length) {
     handleResults(validWords);

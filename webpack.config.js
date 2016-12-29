@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 var WebpackNotifierPlugin = require('webpack-notifier');
 
+console.log(process.env);
+
 /*
  * Default webpack configuration for development
  */
@@ -39,7 +41,7 @@ var config = {
     historyApiFallback: true,
     post: process.env.PORT || 8080,
     inline: true
-  },
+  }
 }
 
 module.exports = config;

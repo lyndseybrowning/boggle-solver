@@ -2,9 +2,10 @@ import css from '../css/main.scss';
 import solve from './solver.js';
 import 'whatwg-fetch';
 
+const env = process.env.NODE_ENV || 'production';
 let path = '/dictionary';
-if(typeof process.env.NODE_ENV === 'production') {
-  path = 'lyndseyb.co.uk/boggle-solver-js';
+if(env === 'production') {
+  path = 'lyndseyb.co.uk/boggle-solver-js/dictionary';
 }
 
 fetch(`${path}/sowpods.json`)

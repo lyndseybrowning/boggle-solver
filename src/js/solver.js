@@ -93,7 +93,7 @@ function solve(currentWord, currentPosition, usedPositions = []) {
     validWords.push(currentWord);
   }
 
-  const adjacents = findAdjacents(currentPosition, usedPositions);
+  const adjacents = findAdjacents(currentWord, currentPosition, usedPositions);
 
   adjacents.forEach(adjacent => {
   	positionsCopy.push(currentPosition);
@@ -101,16 +101,14 @@ function solve(currentWord, currentPosition, usedPositions = []) {
     const letter = board[x][y];
     const word = currentWord + letter;
 
-    if(Dictionary.isValidPrefix(word)) {
-      solve(word, adjacent, positionsCopy);
-    }
+    solve(word, adjacent, positionsCopy);
   });
   return;
 }
 
 // loop directions to find adjacent positions
 // disregard positions that have already been used in usedPositions
-function findAdjacents(position, usedPositions) {
+function findAdjacents(currentWord, position, usedPositions) {
 	const allDirections = directions.slice(0);
 	const [row,col] = position;
 
@@ -121,8 +119,9 @@ function findAdjacents(position, usedPositions) {
 
     if((rowSum >= 0 && colSum >= 0) && (rowSum < size && colSum < size)) {
     	let result = [rowSum, colSum];
+      let adjacentWord = currentWord + board[rowSum][colSum];
 
-      if(!utils.arrayMatch(usedPositions, result)) {
+      if(!utils.arrayMatch(usedPositions, result) && Dictionary.isValidPrefix(adjacentWord)) {
    			acc.push(result);
       }
     }

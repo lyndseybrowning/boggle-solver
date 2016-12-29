@@ -35,7 +35,7 @@ const Dictionary = () => {
         	return false;
         }
         currentNode = currentNode[letter];
-        return letter;
+        return true;
       });
     }
   }

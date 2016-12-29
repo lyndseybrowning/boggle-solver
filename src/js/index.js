@@ -4,7 +4,7 @@ import grid from './grid';
 import 'whatwg-fetch';
 import './analytics';
 
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'production';
 let path = '/dictionary';
 if(env === 'production') {
   path = '/boggle-solver-js/dictionary';

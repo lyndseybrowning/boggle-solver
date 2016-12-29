@@ -6,8 +6,8 @@ const tiles = document.querySelectorAll('[data-letter]');
 const err = document.getElementById('err');
 const size = 4;
 const minLength = 3;
-const grid = [];
-const validWords = [];
+let grid = [];
+let validWords = [];
 
 function handleReset() {
   [].forEach.call(tiles, (tile) => {
@@ -21,6 +21,8 @@ function handleSolve() {
     return;
   }
 
+  grid = [];
+  validWords = [];
   let counter = 0;
   [].reduce.call(tiles, (acc, tile, index) => {
     counter++;
@@ -34,15 +36,26 @@ function handleSolve() {
     return acc;
   }, []);
 
-  console.log(grid);
-
   grid.forEach((row, rowIndex) => {
    row.forEach((col, colIndex) => {
      solve(grid[rowIndex][colIndex], [rowIndex, colIndex]);
     });
   });
 
-  console.log(validWords);
+  if(validWords.length) {
+    handleResults(validWords);
+  }
+}
+
+function handleResults(results) {
+  results = results.sort((a, b) => { return b.length - a.length; });
+  const numWords = document.getElementById('num-words');
+  const wordList = document.getElementById('word-list');
+  numWords.innerText = results.length;
+
+  wordList.innerHTML = results.reduce((acc, word) => {
+    return acc + `<li>${word}</li>`;
+  }, '');
 }
 
 function allTilesEntered() {

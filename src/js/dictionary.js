@@ -26,6 +26,17 @@ const Dictionary = () => {
         }
       	return letter;
       });
+    },
+    isValidPrefix(prefix) {
+      let currentNode = trie;
+
+      return prefix.split('').every(letter => {
+        if(!currentNode[letter]) {
+        	return false;
+        }
+        currentNode = currentNode[letter];
+        return letter;
+      });
     }
   }
 };

@@ -34,6 +34,8 @@ function handleSolve() {
     return acc;
   }, []);
 
+  console.log(grid);
+
   grid.forEach((row, rowIndex) => {
    row.forEach((col, colIndex) => {
      solve(grid[rowIndex][colIndex], [rowIndex, colIndex]);
@@ -65,7 +67,9 @@ function solve(currentWord, currentPosition, usedPositions = []) {
     const letter = grid[x][y];
     const word = currentWord + letter;
 
-    //solve(word, adjacent, positionsCopy);
+    if(Dictionary.isValidPrefix(word)) {
+      solve(word, adjacent, positionsCopy);
+    }
   });
   return;
 }

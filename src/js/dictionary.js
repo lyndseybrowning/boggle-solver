@@ -1,6 +1,10 @@
 const Dictionary = () => {
+  let trie = {};
 
   return {
+    init(dictionary) {
+      trie = dictionary;
+    },
   	containsWord(word) {
     	if(typeof word !== 'string') {
       	throw(`Invalid parameter passed to Dictionary.containsWord(string word): ${word}`);

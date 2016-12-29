@@ -1,36 +1,62 @@
+import Dictionary from './dictionary';
+import utils from './utils';
 
-
-
-
-
-const Dictionary = require('./dictionary');
-
-const validWords = [];
 const directions = [ [-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1] ];
-const grid = [
-    ['s', 'e', 'r', 's'],
-    ['p', 'a', 't', 'g'],
-    ['l', 't', 'n', 'i'],
-    ['a', 'a', 'a', 'a']
-];
-const size = grid.length;
+const tiles = document.querySelectorAll('[data-letter]');
+const err = document.getElementById('err');
+const size = 4;
 const minLength = 3;
+const grid = [];
+const validWords = [];
 
-grid.forEach((row, rowIndex) => {
- row.forEach((col, colIndex) => {
-    solve(grid[rowIndex][colIndex], [rowIndex, colIndex]);
+function handleReset() {
+  [].forEach.call(tiles, (tile) => {
+    tile.value = '';
   });
-});
-console.log(validWords);
+}
 
+function handleSolve() {
+  if(!allTilesEntered()) {
+    err.innerText = (`Enter a letter in all fields`);
+    return;
+  }
+
+  let counter = 0;
+  [].reduce.call(tiles, (acc, tile, index) => {
+    counter++;
+    acc.push(tile.value);
+
+    if(counter === size) {
+      grid.push(acc);
+      acc = [];
+      counter = 0;
+    }
+    return acc;
+  }, []);
+
+  grid.forEach((row, rowIndex) => {
+   row.forEach((col, colIndex) => {
+     solve(grid[rowIndex][colIndex], [rowIndex, colIndex]);
+    });
+  });
+
+  console.log(validWords);
+}
+
+function allTilesEntered() {
+  return [].every.call(tiles, (tile) => {
+    return (tile.value != null && tile.value !== '');
+  });
+}
 
 function solve(currentWord, currentPosition, usedPositions = []) {
 	const [row, col] = currentPosition;
   const positionsCopy = usedPositions.slice();
 
-  if(currentWord.length >= minLength && Dictionary.containsWord(currentWord) && !inArray(validWords, currentWord)) {
+  if(currentWord.length >= minLength && Dictionary.containsWord(currentWord) && !utils.inArray(validWords, currentWord)) {
     validWords.push(currentWord);
   }
+
   const adjacents = findAdjacents(currentPosition, usedPositions);
 
   adjacents.forEach(adjacent => {
@@ -39,24 +65,9 @@ function solve(currentWord, currentPosition, usedPositions = []) {
     const letter = grid[x][y];
     const word = currentWord + letter;
 
-    solve(word, adjacent, positionsCopy);
+    //solve(word, adjacent, positionsCopy);
   });
-
   return;
-}
-
-function inArray(arr, word) {
-	return (arr.indexOf(word) !== -1);
-}
-
-/// checks if two arrays are exactly the same
-// e.g. [1,1] === [1,1], [1,0] !== [1,1]
-function arrayMatch(first, second) {
-	return first.some((item) => {
- 		return item.every((x, index) => {
-    	return x === second[index];
-    });
-  });
 }
 
 // loop directions to find adjacent positions
@@ -73,10 +84,20 @@ function findAdjacents(position, usedPositions) {
     if((rowSum >= 0 && colSum >= 0) && (rowSum < size && colSum < size)) {
     	let result = [rowSum, colSum];
 
-      if(!arrayMatch(usedPositions, result)) {
+      if(!utils.arrayMatch(usedPositions, result)) {
    			acc.push(result);
       }
     }
     return acc;
   }, []);
 }
+
+export default (dictionary) => {
+  Dictionary.init(dictionary);
+
+  const solve = document.getElementById('solve');
+  const reset = document.getElementById('reset');
+
+  solve.addEventListener('click', handleSolve);
+  reset.addEventListener('click', handleReset);
+};

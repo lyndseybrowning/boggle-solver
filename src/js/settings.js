@@ -1,5 +1,5 @@
 export default  {
-  defaultSize: 18,
+  defaultSize: 4,
   defaultBoards: {
     3: 'ser lin ers', // 115 words
     4: 'sers patg line sers', // 1435 words

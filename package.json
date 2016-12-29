@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
+    "build": "webpack -p --config ./webpack.production.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,6 +31,7 @@
     "css-loader": "^0.26.1",
     "node-sass": "^4.1.1",
     "sass-loader": "^4.1.1",
+    "strip-loader": "^0.1.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",

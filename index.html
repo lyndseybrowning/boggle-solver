@@ -1,45 +1,36 @@
 <!doctype html>
 <html>
+
 <head>
-  <title> Boggle Solver </title>
+    <title> Boggle Solver </title>
 </head>
+
 <body>
-  <div id="o-wrapper">
-    <header>
-      <h1> Boggle Solver </h1>
-    </header>
-    <main>
-      <section class="o-section">
-        <div id="err"></div>
-        <div class="o-grid o-grid--gutter c-boggle">
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="s"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="e"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="r"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="s"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="p"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="a"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="t"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="g"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="l"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="i"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="n"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="e"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="s"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="e"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="r"></div>
-            <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-letter class="c-boggle__tile" value="s"></div>
-            <div class="o-grid__col u-1/1"><button class="c-button" id="solve">Solve</button></div>
-            <div class="o-grid__col u-1/1"><button class="c-button" id="reset">Reset</button></div>
-        </div>
-      </section>
-      <section class="o-section">
-        <div class="c-results">
-          <strong><span id="num-words">0</span> Words</strong>
-          <ul id="word-list"></ul>
-        </div>
-      </section>
-    </main>
-  </div>
-  <script src="build/bundle.js"></script>
+    <div id="o-wrapper">
+        <header>
+            <h1> Boggle Solver </h1>
+        </header>
+        <main>
+            <section class="o-section">
+                <div id="err"></div>
+                <div class="o-grid c-boggle">
+                    <div class="o-grid__col u-1/1">
+                        <div><strong>Size: <input type="number" id="num-rows" min="3" max="8" readonly> x <input type="number" id="num-cols" min="3" max="8"> </strong><button class="c-button" id="update-grid-size">Update</button></div>
+                    </div>
+                    <div class="o-grid o-grid--gutter u-push-top" id="board"></div>
+                    <div class="o-grid__col u-1/1 u-push-top"><button class="c-button" id="solve">Solve</button></div>
+                    <div class="o-grid__col u-1/1 u-push-top"><button class="c-button" id="reset">Reset</button></div>
+                </div>
+            </section>
+            <section class="o-section">
+                <div class="c-results">
+                    <strong><span id="num-words">0</span> Words</strong>
+                    <ul id="word-list"></ul>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="build/bundle.js"></script>
 </body>
+
 </html>

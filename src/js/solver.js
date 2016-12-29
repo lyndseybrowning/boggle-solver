@@ -1,44 +1,57 @@
 import Dictionary from './dictionary';
+import grid from './grid';
 import utils from './utils';
+import settings from './settings';
 
 const directions = [ [-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1] ];
-const tiles = document.querySelectorAll('[data-letter]');
 const err = document.getElementById('err');
-const size = 4;
-const minLength = 3;
-let grid = [];
+const minLength = settings.minWordLength;
+const numWords = document.getElementById('num-words');
+const wordList = document.getElementById('word-list');
+
+let board = [];
 let validWords = [];
+let tiles = null;
+let size = grid.size;
 
 function handleReset() {
   [].forEach.call(tiles, (tile) => {
     tile.value = '';
   });
+
+  numWords.innerText = 0;
+  wordList.innerHTML = '';
+  grid.init({ onLoad: true });
 }
 
 function handleSolve() {
+  let counter = 0;
+  tiles = document.querySelectorAll('[data-letter]');
+  size = grid.size;
+
   if(!allTilesEntered()) {
     err.innerText = (`Enter a letter in all fields`);
     return;
   }
 
-  grid = [];
+  board = [];
   validWords = [];
-  let counter = 0;
+
   [].reduce.call(tiles, (acc, tile, index) => {
     counter++;
-    acc.push(tile.value);
+    acc.push(tile.value.toLowerCase());
 
     if(counter === size) {
-      grid.push(acc);
+      board.push(acc);
       acc = [];
       counter = 0;
     }
     return acc;
   }, []);
 
-  grid.forEach((row, rowIndex) => {
+  board.forEach((row, rowIndex) => {
    row.forEach((col, colIndex) => {
-     solve(grid[rowIndex][colIndex], [rowIndex, colIndex]);
+     solve(board[rowIndex][colIndex], [rowIndex, colIndex]);
     });
   });
 
@@ -49,8 +62,6 @@ function handleSolve() {
 
 function handleResults(results) {
   results = results.sort((a, b) => { return b.length - a.length; });
-  const numWords = document.getElementById('num-words');
-  const wordList = document.getElementById('word-list');
   numWords.innerText = results.length;
 
   wordList.innerHTML = results.reduce((acc, word) => {
@@ -77,7 +88,7 @@ function solve(currentWord, currentPosition, usedPositions = []) {
   adjacents.forEach(adjacent => {
   	positionsCopy.push(currentPosition);
     const [x,y] = adjacent;
-    const letter = grid[x][y];
+    const letter = board[x][y];
     const word = currentWord + letter;
 
     if(Dictionary.isValidPrefix(word)) {

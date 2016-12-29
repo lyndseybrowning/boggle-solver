@@ -4,27 +4,33 @@
   <title> Boggle Solver </title>
 </head>
 <body>
-  <h1> Boggle Solver </h1>
-  <div class="c-boggle o-grid o-grid--gutter">
-      <div class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></div>
-      <div class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></div>
-      <div class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></div>
-      <div class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></div>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
-      <span class="c-boggle__tile o-grid__col u-1/4"><input type="text" name="letter1"></span>
+  <div class="o-wrapper">
+    <header>
+      <h1> Boggle Solver </h1>
+    </header>
+    <main>
+      <div class="o-grid o-grid--gutter c-boggle">
+          <div class="o-grid__col u-1/4"><input type="text" maxlength="1" data-tile="1" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="2" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="3" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="4" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="5" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="6" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="7" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="8" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="9" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="10" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="11" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="12" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="13" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="14" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="15" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/4"><input type="text" data-letter="16" class="c-boggle__tile"></div>
+          <div class="o-grid__col u-1/1"><input type="button" id="solve" value=" Solve "></div>
+          <div class="o-grid__col u-1/1"><input type="button" id="cancel" value=" Reset "></div>
+      </div>
+    </main>
   </div>
-
-
   <script src="bundle.js"></script>
 </body>
 </html>

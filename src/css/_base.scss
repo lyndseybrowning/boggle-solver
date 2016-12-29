@@ -1,0 +1,13 @@
+html {
+  min-height: 100%;
+  font-size: 90%;
+}
+
+body {
+  font-size: $base-font-size;
+}
+
+ul,
+ol {
+  margin-left: $spacing-unit * 2;
+}

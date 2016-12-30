@@ -4,3 +4,9 @@
   padding-left: $spacing-unit * 2;
   padding-bottom: $spacing-unit;
 }
+
+@media (max-width: 720px) {
+  .c-results .u-1\/4 {
+    width: 50%;
+  }
+}

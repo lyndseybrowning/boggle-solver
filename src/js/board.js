@@ -6,7 +6,9 @@ export default (() => {
   const wordList = document.getElementById('word-list');
   let boardSize = settings.defaultSize;
 
-  function init() {
+  function init(options = {
+      loadDefaults: true
+    }) {
     const setRows = document.getElementById('num-rows');
     const setCols = document.getElementById('num-cols');
     const numRows = setRows.value !== '' ? parseInt(setRows.value, 10) : boardSize;
@@ -26,9 +28,11 @@ export default (() => {
     let defaultLetters = [];
     let hasDefaultLetters = false;
 
-    if(settings.defaultBoards.hasOwnProperty(numRows)) {
-      hasDefaultLetters = true;
-      defaultLetters = settings.defaultBoards[numRows].split(' ');
+    if(options.loadDefaults) {
+      if(settings.defaultBoards.hasOwnProperty(numRows)) {
+        hasDefaultLetters = true;
+        defaultLetters = settings.defaultBoards[numRows].split(' ');
+      }
     }
 
     while(rows < numRows) {

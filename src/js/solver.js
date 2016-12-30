@@ -62,7 +62,7 @@ function onSolveClick(e) {
 }
 
 function onResetClick(e) {
-  board.init();
+  board.init({ loadDefaults: false });
 }
 
 function solveBoard(currentWord, currentPosition, usedPositions = []) {

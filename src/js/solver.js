@@ -36,11 +36,15 @@ function init() {
 function onSolveClick(e) {
   const executionStartTime = utils.getTime();
   const letters = utils.getInputValues(document.querySelectorAll('[data-letter]'));
+  const userMessage = document.getElementById('userMessage');
+
   wordsFound = [];
   boardSize = board.getSize();
   boardMatrix = utils.getBoardMatrix(boardSize, letters);
+  userMessage.setAttribute('hidden', true);
 
   if(letters.length < boardSize * boardSize) {
+    userMessage.removeAttribute('hidden');
     err.innerText = (`Please enter a letter in ALL fields.`);
     return;
   }

@@ -9,6 +9,7 @@ export default (() => {
   function init(options = {
       loadDefaults: true
     }) {
+      
     const setRows = document.getElementById('num-rows');
     const setCols = document.getElementById('num-cols');
     const numRows = setRows.value !== '' ? parseInt(setRows.value, 10) : boardSize;
@@ -61,7 +62,11 @@ export default (() => {
 
   function updateBoard() {
     const boardUpdate = document.getElementById('update-grid-size');
-    boardUpdate.addEventListener('click', init);
+    boardUpdate.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      init();
+    });
   }
 
   return {

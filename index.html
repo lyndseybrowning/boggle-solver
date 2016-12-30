@@ -10,21 +10,26 @@
             <h1> Boggle Solver </h1>
         </header>
         <main>
+           <p> <strong> Note: </strong> All boards have been prepopulated. To clear a board, click on the Reset button.</p>
             <section class="o-section">
                 <div id="err"></div>
                 <div class="o-grid c-boggle">
                     <div class="o-grid__col u-1/1">
-                        <div><strong>Size: <input type="number" id="num-rows" max="8" min="3" readonly> x <input type="number" id="num-cols" max="8" min="3"> </strong><button class="c-button" id="update-grid-size">Update</button></div>
+                        <div><strong>Size: <input type="number" id="num-rows" max="8" min="3" readonly> x <input type="number" id="num-cols" max="8" min="3"> </strong><button class="c-button c-button--sm" id="update-grid-size">Update</button></div>
                     </div>
                     <div class="o-grid o-grid--gutter u-push-top" id="board"></div>
-                    <div class="o-grid__col u-1/1 u-push-top"><button class="c-button" id="solve">Solve</button></div>
-                    <div class="o-grid__col u-1/1 u-push-top"><button class="c-button" id="reset">Reset</button></div>
+                    <div class="o-grid__col u-1/1 u-push-top">
+                      <div class="u-txt-center"><button class="c-button c-button--md" id="solve">Solve</button></div>
+                    </div>
+                    <div class="o-grid__col u-1/1 u-push-top">
+                      <div class="u-txt-center"><button class="c-button c-button--md" id="reset">Reset</button></div>
+                    </div>
                 </div>
             </section>
-            <section class="o-section">
-                <div id="execution">Board solved in: <strong id="execution-time"></strong></div>
+            <section id="execution">
+                <div>Board solved in: <strong id="execution-time"></strong></div>
             </section>
-            <section class="o-section">
+            <section class="u-push-top">
                 <div class="c-results">
                     <strong><span id="num-words">0</span> Words</strong>
                     <ul id="word-list"></ul>

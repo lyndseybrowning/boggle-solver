@@ -44,7 +44,7 @@ function onSolveClick(e) {
     err.innerText = (`Please enter a letter in ALL fields.`);
     return;
   }
-  
+
   // run solver
   boardMatrix.forEach((row, rowIndex) => {
    row.forEach((col, colIndex) => {
@@ -111,6 +111,6 @@ function displayResults(results) {
   results = results.sort((a, b) => { return b.length - a.length; });
   numWords.innerText = results.length;
   wordList.innerHTML = results.reduce((acc, word) => {
-    return acc + `<li>${word}</li>`;
+    return acc + `<li class="c-wordlist__word o-grid__col u-1/4">${word}</li>`;
   }, '');
 }

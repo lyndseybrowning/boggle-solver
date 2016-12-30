@@ -1,0 +1,11 @@
+.c-wordlist {
+  list-style: none;
+  margin-left: 0;
+  padding-top: $spacing-unit;
+}
+
+.c-wordlist__word {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-top: $spacing-unit / 2;
+}

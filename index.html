@@ -2,6 +2,7 @@
 <html>
 <head>
     <title> Boggle Solver </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
     <div id="o-wrapper">
@@ -13,7 +14,7 @@
                 <div id="err"></div>
                 <div class="o-grid c-boggle">
                     <div class="o-grid__col u-1/1">
-                        <div><strong>Size: <input type="number" id="num-rows" readonly> x <input type="number" id="num-cols"> </strong><button class="c-button" id="update-grid-size">Update</button></div>
+                        <div><strong>Size: <input type="number" id="num-rows" max="8" min="3" readonly> x <input type="number" id="num-cols" max="8" min="3"> </strong><button class="c-button" id="update-grid-size">Update</button></div>
                     </div>
                     <div class="o-grid o-grid--gutter u-push-top" id="board"></div>
                     <div class="o-grid__col u-1/1 u-push-top"><button class="c-button" id="solve">Solve</button></div>

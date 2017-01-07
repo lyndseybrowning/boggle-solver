@@ -1,0 +1,13 @@
+$alert-warning-bg: #ffeacf;
+$alert-warning-color: #ffd9a9;
+
+.c-alert {
+  padding: $spacing-unit;
+  color: #212121;
+  border: 1px solid $alert-warning-color;
+  border-radius: 5px;
+
+  &--warning {
+    background-color: $alert-warning-bg;
+  }
+}

@@ -1,0 +1,45 @@
+
+<!doctype html>
+<html>
+<head>
+    <title> Boggle Solver </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Boggle Solver">
+</head>
+<body>
+  <div id="o-wrapper">
+      <header class="o-section">
+          <h1> Boggle Solver </h1>
+      </header>
+      <main>
+          <p> <strong> Note: </strong> All boards have been prepopulated. To clear a board, click on the Reset button.</p>
+          <div class="u-push-top" id="userMessage" hidden>
+              <div id="err" class="c-alert c-alert--warning"></div>
+          </div>
+          <section class="o-section">
+              <div class="o-grid c-boggle">
+                  <div class="o-grid__col u-1/1">
+                      <div><strong>Size: <input type="number" id="num-rows" max="8" min="3" readonly> x <input type="number" id="num-cols" max="8" min="3"> </strong><button class="c-button c-button--sm" id="update-grid-size">Update</button></div>
+                  </div>
+                  <div class="o-grid o-grid--gutter u-push-top" id="board"></div>
+                  <div class="o-grid__col u-1/1 u-push-top">
+                    <div class="u-txt-center"><button class="c-button c-button--md" id="solve">Solve</button></div>
+                  </div>
+                  <div class="o-grid__col u-1/1 u-push-top">
+                    <div class="u-txt-center"><button class="c-button c-button--md" id="reset">Reset</button></div>
+                  </div>
+              </div>
+          </section>
+          <section id="execution">
+              <div>Board solved in: <strong id="execution-time"></strong></div>
+          </section>
+          <section class="u-push-top">
+              <div class="c-results">
+                  <strong><span id="num-words">0</span> Words</strong>
+                  <ul id="word-list" class="c-wordlist o-grid"></ul>
+              </div>
+          </section>
+      </main>
+  </div>
+</body>
+</html>

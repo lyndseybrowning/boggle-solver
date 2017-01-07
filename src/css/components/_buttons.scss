@@ -1,0 +1,25 @@
+$bg: $color-brand;
+$hover: #ffd6a2;
+
+.c-button {
+  padding: $spacing-unit;
+  background-color: $bg;
+  text-transform: capitalize;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 0.9rem;
+
+
+  &:hover {
+    background-color: $hover;
+  }
+
+  &--md {
+    padding-left: $spacing-unit * 4;
+    padding-right: $spacing-unit * 4;
+  }
+
+  &--sm {
+    padding: $spacing-unit / 2;
+  }
+}

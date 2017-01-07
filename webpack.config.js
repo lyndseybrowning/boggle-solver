@@ -1,8 +1,6 @@
 var webpack = require('webpack');
 var WebpackNotifierPlugin = require('webpack-notifier');
 
-console.log(process.env);
-
 /*
  * Default webpack configuration for development
  */

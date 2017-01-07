@@ -1,15 +1,14 @@
 .c-boggle {
   background-color: #fff;
-  max-width: 600px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 .c-boggle__tile {
   padding-top: $spacing-unit;
   padding-bottom: $spacing-unit;
-  font-size: $spacing-unit * 2;
+  font-size: 2rem;
   text-align: center;
   text-transform: uppercase;
   border: 1px solid #aaa;

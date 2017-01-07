@@ -8,7 +8,7 @@ const solve = document.getElementById('solve');
 const reset = document.getElementById('reset');
 const err = document.getElementById('err');
 const numWords = document.getElementById('num-words');
-const wordList = document.getElementById('word-list');
+const elWordList = document.getElementById('word-list');
 const execution = document.getElementById('execution');
 const executionTime = document.getElementById('execution-time');
 
@@ -18,7 +18,9 @@ const directions = [ [-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0
 
 execution.style.visibility = 'hidden';
 let boardMatrix = [];
-let wordsFound = [];
+let wordListObj = [];
+let coords = [];
+let wordList = [];
 let boardSize = board.getSize();
 
 export default (() => {
@@ -38,7 +40,8 @@ function onSolveClick(e) {
   const letters = utils.getInputValues(document.querySelectorAll('[data-letter]'));
   const userMessage = document.getElementById('userMessage');
 
-  wordsFound = [];
+  wordListObj = [];
+  wordList = [];
   boardSize = board.getSize();
   boardMatrix = utils.getBoardMatrix(boardSize, letters);
   userMessage.setAttribute('hidden', true);
@@ -60,8 +63,8 @@ function onSolveClick(e) {
   execution.style.visibility = 'visible';
   executionTime.innerText = `${executionEndTime-executionStartTime}ms`;
 
-  if(wordsFound.length) {
-    displayResults(wordsFound);
+  if(wordList.length) {
+    displayResults(wordListObj);
   }
 }
 
@@ -69,23 +72,31 @@ function onResetClick(e) {
   board.init({ loadDefaults: false });
 }
 
-function solveBoard(currentWord, currentPosition, usedPositions = []) {
+function solveBoard(currentWord, currentPosition, coords = [], usedPositions = []) {
   	const [row, col] = currentPosition;
-    const positionsCopy = usedPositions.slice();
+    const positions_copy = usedPositions.slice();
+    const coords_copy = coords.slice();
 
-    if(currentWord.length >= minLength && trie.containsWord(currentWord) && !utils.inArray(wordsFound, currentWord)) {
-      wordsFound.push(currentWord);
+    coords_copy.push(currentPosition);
+
+    if(currentWord.length >= minLength && trie.containsWord(currentWord) && !utils.inArray(wordList, currentWord)) {
+      wordList.push(currentWord);
+      wordListObj.push({
+          word: currentWord,
+          coords: coords_copy
+      });
+      coords = [];
     }
 
     const adjacents = getAdjacentLetters(currentWord, currentPosition, usedPositions);
 
     adjacents.forEach(adjacent => {
-    	positionsCopy.push(currentPosition);
+    	positions_copy.push(currentPosition);
       const [x,y] = adjacent;
       const letter = boardMatrix[x][y];
       const word = currentWord + letter;
 
-      solveBoard(word, adjacent, positionsCopy);
+      solveBoard(word, adjacent, coords_copy, positions_copy);
     });
     return;
 }
@@ -111,10 +122,12 @@ function getAdjacentLetters(currentWord, position, usedPositions) {
   }, []);
 }
 
-function displayResults(results) {
-  results = results.sort((a, b) => { return b.length - a.length; });
-  numWords.innerText = results.length;
-  wordList.innerHTML = results.reduce((acc, word) => {
-    return acc + `<li class="c-wordlist__word o-grid__col u-1/4">${word}</li>`;
+function displayResults(wordListObj) {
+  // sort available words by length descending
+  wordListObj = wordListObj.sort((a, b) => { return b.word.length - a.word.length; });
+
+  numWords.innerText = wordList.length;
+  elWordList.innerHTML = wordListObj.reduce((acc, obj) => {
+    return acc + `<li class="c-wordlist__word o-grid__col u-1/4" data-coords="${JSON.stringify(obj.coords)}">${obj.word}</li>`;
   }, '');
 }

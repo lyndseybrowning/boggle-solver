@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var WebpackNotifierPlugin = require('webpack-notifier');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /*
  * Default webpack configuration for development
@@ -8,9 +9,9 @@ var config = {
   devtool: 'eval-source-map',
   entry:  __dirname + "/src/js/index.js",
   output: {
-    path: __dirname + "/build/",
+    path: __dirname,
     filename: "bundle.js",
-    publicPath: "/build/"
+    publicPath: "/"
   },
   module: {
     loaders: [
@@ -31,7 +32,11 @@ var config = {
   ],
 
   plugins: [
-    new WebpackNotifierPlugin()
+    new WebpackNotifierPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'src/templates/index.template.ejs',
+      inject: 'body'
+    })
   ],
 
   devServer: {

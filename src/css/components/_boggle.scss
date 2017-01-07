@@ -13,6 +13,12 @@
   text-transform: uppercase;
   border: 1px solid #aaa;
   border-radius: 5px;
+
+  &--selected {
+    background-color: $color-highlight;
+    border-color: $color-brand;
+    transition: all 0.3s ease;
+  }
 }
 
 @media (max-width: 720px) {

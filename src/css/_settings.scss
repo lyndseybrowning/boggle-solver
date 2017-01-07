@@ -3,7 +3,8 @@ $wrapper-width: 60rem !default;
 $spacing-unit: 1rem !default;
 $base-font-size: 1rem !default;
 
-$base-color: #FFC77F;
+$color-brand: #FFC77F;
+$color-highlight: lighten($color-brand, 15%);
 
 $breakpoints: (
   small: 720px,

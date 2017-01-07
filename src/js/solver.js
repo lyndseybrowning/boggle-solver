@@ -130,4 +130,24 @@ function displayResults(wordListObj) {
   elWordList.innerHTML = wordListObj.reduce((acc, obj) => {
     return acc + `<li class="c-wordlist__word o-grid__col u-1/4" data-coords="${JSON.stringify(obj.coords)}">${obj.word}</li>`;
   }, '');
+
+  const tiles = document.querySelectorAll('.c-boggle__tile');
+
+  elWordList.addEventListener('click', (e) => {
+    [].forEach.call(tiles, tile => {
+      tile.classList.remove('c-boggle__tile--selected');
+    });
+    const word = e.target;
+    if(!word.nodeName === 'LI' && !word.getAttribute('data-coords')) {
+      return;
+    }
+
+    const coords = JSON.parse(word.getAttribute('data-coords'));
+    coords.forEach((coord, index) => {
+      const [row, col] = coord;
+      setTimeout(() => {
+        tiles[boardSize * row + col].classList.add('c-boggle__tile--selected');
+      }, index * 200);
+    });
+  });
 }

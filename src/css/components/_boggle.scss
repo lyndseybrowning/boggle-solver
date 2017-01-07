@@ -6,11 +6,21 @@
 }
 
 .c-boggle__tile {
-  padding-top: $spacing-unit;
-  padding-bottom: $spacing-unit;
+  padding-top: $spacing-unit / 2;
+  padding-bottom: $spacing-unit /2;
   font-size: 2rem;
   text-align: center;
   text-transform: uppercase;
   border: 1px solid #aaa;
   border-radius: 5px;
+}
+
+@media (max-width: 720px) {
+  $sizes: 5,6,7,8;
+
+  @each $size in $sizes {
+    .c-boggle .o-grid__col.u-1\/#{$size}  * {
+      font-size: $spacing-unit;
+    }
+  }
 }

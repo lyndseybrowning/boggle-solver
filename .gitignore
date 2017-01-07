@@ -1,3 +1,9 @@
 .DS_Store
 node_modules
 npm-debug.log
+webpack.config.js
+webpack.production.config.js
+package.json
+README.md
+.babelrc
+src

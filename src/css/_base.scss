@@ -9,7 +9,24 @@ body {
   overflow-y: scroll;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hgroup,
 ul,
-ol {
-  margin-left: $spacing-unit * 2;
+ol,
+dl,
+blockquote,
+p,
+address,
+table,
+fieldset,
+figure,
+pre,
+hr,
+section {
+  margin-bottom: $spacing-unit;
 }

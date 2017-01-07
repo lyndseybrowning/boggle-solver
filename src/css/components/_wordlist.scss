@@ -10,4 +10,8 @@
   text-transform: uppercase;
   font-weight: bold;
   padding-top: $spacing-unit / 2;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

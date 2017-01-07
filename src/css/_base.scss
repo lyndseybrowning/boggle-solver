@@ -1,0 +1,31 @@
+html {
+  min-height: 100%;
+  font-size: 90%;
+}
+
+body {
+  font-size: $base-font-size;
+  border-top: 4px solid $color-brand;
+  overflow-y: scroll;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hgroup,
+ul,
+ol,
+dl,
+blockquote,
+p,
+address,
+table,
+fieldset,
+figure,
+pre,
+hr {
+  margin-bottom: $spacing-unit;
+}

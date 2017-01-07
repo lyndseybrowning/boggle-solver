@@ -1,0 +1,32 @@
+.o-grid {
+  box-sizing: border-box;
+  font-size: 0;
+}
+
+.o-grid > .o-grid__col {
+  display: inline-block;
+  font-size: $spacing-unit;
+}
+
+.o-grid > .o-grid__col > * {
+  width: 100%;
+}
+
+.o-grid--gutter {
+  margin-left: -$spacing-unit;
+  margin-bottom: -$spacing-unit;
+}
+
+.o-grid--gutter > .o-grid__col {
+    padding-left: $spacing-unit;
+    padding-bottom: $spacing-unit;
+}
+
+.o-grid--equal-height {
+  flex-wrap: wrap;
+}
+
+.o-grid--equal-height,
+.o-grid--equal-height > .o-grid__col {
+  display: flex;
+}

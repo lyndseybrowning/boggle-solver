@@ -1,0 +1,9 @@
+@function str-replace($string, $find, $replace-with: '') {
+    $index: str-index($string, $find);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace-with + str-slice($string, $index + 1);
+    }
+
+    @return $string;
+}

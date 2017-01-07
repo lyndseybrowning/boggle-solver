@@ -1,0 +1,17 @@
+.c-wordlist {
+  list-style: none;
+  padding-top: $spacing-unit;
+  margin-top: 1rem;
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+.c-wordlist__word {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-top: $spacing-unit / 2;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

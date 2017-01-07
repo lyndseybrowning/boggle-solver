@@ -1,0 +1,56 @@
+* {
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+dl,
+dd,
+ol,
+ul,
+form,
+fieldset,
+legend,
+table,
+figure,
+th,
+td,
+caption,
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+1. make image fluid & maintain aspect ratio.
+2. So that `alt` text is visually offset if images don’t load.
+*/
+img {
+  max-width: 100%; // [1]
+  height: auto; // [1]
+  font-style: italic; // [2]
+}
+
+a img {
+  border: 0;
+}
+
+button {
+  border: 0;
+  padding: 0;
+}
+
+label {
+  cursor: pointer;
+}

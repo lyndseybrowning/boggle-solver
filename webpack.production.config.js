@@ -6,6 +6,7 @@ var stripLoader = {
     loader: WebpackStrip.loader('console.log')
 };
 
+devConfig.output.publicPath = '';
 devConfig.output.filename = '[name].[hash].js';
 devConfig.module.loaders.push(stripLoader);
 

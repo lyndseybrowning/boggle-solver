@@ -1,7 +1,0 @@
-@each $key, $fraction in $fractions {
-    $key: str-replace($key, '/', '\\/');
-
-    .u-#{$key} {
-        width: $fraction * 100%;
-    }
-}
